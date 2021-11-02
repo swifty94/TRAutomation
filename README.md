@@ -38,7 +38,7 @@ https://www.oracle.com/database/technologies/instant-client.html
 Installation:
 ---    
 - If there is access to the Internet
-
+<pre>
     Linux:
         - open terminal
         - cd to the folder of the project
@@ -52,6 +52,7 @@ Installation:
         - py -m venv venv
         - ./venv/Scripts/activate.bat
         - pip3 install -r dependecies.txt
+/<pre>
 
 - TODO: - dependencies installation without Internet
 
