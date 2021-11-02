@@ -50,7 +50,7 @@ Installation:
         - open CMD
         - cd to the folder of the project
         - py -m venv venv
-        - ./venv/Scripts/activate.bat
+        - .\venv\Scripts\activate.bat
         - pip3 install -r dependecies.txt
         
 </pre>
