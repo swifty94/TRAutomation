@@ -19,7 +19,7 @@ thus, the connection type should be searched in
 
 InternetGatewayDevice.WANDevice.3.WANConnectionDevice.3.WANPPPConnection.1.ConnectionType
 
-NOTE3: if the router does not have such parameter or its value is empty it will be reflected in the log. E.g.,
+NOTE3: if the router does not have such parameter or its value is empty it will be reflected in the app.log. E.g.,
 
 <pre>
 [2021-02-11 10:46:45] [INFO] [main] [DataProcessor Started processing data for cpeId=16090] [getConnectionType]
