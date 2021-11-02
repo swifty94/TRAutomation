@@ -42,16 +42,16 @@ Installation:
     Linux:
         - open terminal
         - cd to the folder of the project
-        - python3 -m venv venv
-        - ./venv/Scripts/activate
-        - pip3 install -r dependecies.txt
+        - run: python3 -m venv venv
+        - run: source venv/bin/activate
+        - run: pip3 install -r dependecies.txt
        
     Windows:
         - open CMD
         - cd to the folder of the project
-        - py -m venv venv
-        - .\venv\Scripts\activate.bat
-        - pip3 install -r dependecies.txt
+        - run: py -m venv venv
+        - run: .\venv\Scripts\activate.bat
+        - run: pip3 install -r dependecies.txt
         
 </pre>
 
