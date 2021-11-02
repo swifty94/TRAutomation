@@ -164,8 +164,7 @@ class DataProcessor(object):
         self.db = db
         self.xlsx = inputXlsx
         self.cpeList = self.xlsx.getSerialList()
-        self.macList = self.xlsx.getMacList()
-        
+        self.macList = self.xlsx.getMacList()        
         self.ACTIVE_IP_SQL = """
 select p.value
 from  cpe_parameter p, cpe_parameter_name n
@@ -213,7 +212,6 @@ where p.name_id=n.id and
                 connectionTypeParameter = re.sub(f"{wanIpObject}", f"{wanPppObject}", connectionTypeParameter)
             else:
                 connectionTypeParameter = re.sub(r"ExternalIPAddress", r"ConnectionType", paramName)
-
             return connectionTypeParameter
         except Exception as e:
             logging.error(f'{self.n} Exception: {e}', exc_info=1)
@@ -247,12 +245,9 @@ where p.name_id=n.id and
                             connectionTypeFinalList.append(connectionTypeParamValue)
                         elif "L2TP" in connectionTypeParamValue:
                             connectionTypeFinalList.append(connectionTypeParamValue)
-                    
                     logging.info(f'{self.n} Finished processing data for cpeId={cid}')
                     logging.debug(f'\n{self.n} activeConnectionObject={activeConnectionObject};\n connectionTypeParam={connectionTypeParam};\n connectionTypeParamValue={connectionTypeParamValue}')
-            
             return connectionTypeFinalList
-
         except Exception as e:
             logging.error(f'{self.n} Exception: {e}', exc_info=1)
 
@@ -293,7 +288,6 @@ class OutputCsv(object):
                     logging.info(f'{self.n} dataToCsv: {__d}')
                     writer.writerow(__d)
                     logging.info(f'{self.n} writerow number: {__cnt}')
-
                 logging.info(f'{self.n} Finished creating CSV report')
                 return __cnt                
         except Exception as e:
@@ -313,12 +307,10 @@ if __name__ == "__main__":
         dataP = DataProcessor(db, xlsx)
         Csv = OutputCsv(app.outputFile, dataP, xlsx) 
         report = Csv.createFinalReport()
-        
         print(f'Processed CPEs: {report}')
         __endtime = timer()
         __elapsed = round(__endtime - __starttime, 3)
         print(f'Elapsed time: {__elapsed} sec\n')
-
         if report:
             print(f'ResultOfReportCreation: Success')
             logging.info("-"*30+" FINISHED OK "+"-"*30)
