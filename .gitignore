@@ -4,3 +4,4 @@ test*
 *.log
 venv*
 __pycache__
+*.csv

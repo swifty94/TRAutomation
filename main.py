@@ -248,7 +248,7 @@ where p.name_id=n.id and
                             logging.info(f'{self.n} connectionTypeParameter=None or empty')
                             connectionTypeParamValue = None
                             connectionTypeFinalList.append(connectionTypeParamValue)
-                        else:
+                        elif "L2TP" in connectionTypeParamValue:
                             connectionTypeFinalList.append(connectionTypeParamValue)
                     
                     logging.info(f'{self.n} Finished processing data for cpeId={cid}')
@@ -303,7 +303,7 @@ class OutputCsv(object):
             logging.error(f'{self.n} Exception: {e}', exc_info=1)
             return 0
 
-            
+
 if __name__ == "__main__":
     try:
         print(__name__+"-"*30+" START "+"-"*30)
