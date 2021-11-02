@@ -1,0 +1,11 @@
+{
+    "inputXlsxPath": "input_test.xlsx",
+
+    "outputCsvName": "A1Report",
+
+    "DbUser": "ftacs",
+
+    "DbPassword": "ftacs",
+
+    "DbDsn": "10.254.8.63/TR069DB_SRV_TR069DB_01"
+}
