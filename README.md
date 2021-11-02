@@ -52,7 +52,8 @@ Installation:
         - py -m venv venv
         - ./venv/Scripts/activate.bat
         - pip3 install -r dependecies.txt
-/<pre>
+        
+</pre>
 
 - TODO: - dependencies installation without Internet
 
