@@ -192,10 +192,7 @@ where p.name_id=n.id and
         cpeIdList = [str(i).replace('(','').replace(')','').replace(',','').replace('[','').replace(']', '') for i in cpeIdList]
         cpeIdList = [int(i) for i in cpeIdList]
         return cpeIdList
-    
-        #for cpe in self.cpeList:
-        #    cpeId = self.db.doSelect(f"select id from cpe where serial='{cpe}'")
-        #    cpeIdList.append(cpeId)
+
     def getConnectionTypeParameterName(self, paramName: str) -> str:
         """
         Obtaining the name of full path of TR parameter for ConnectionType based on active WAN connection object path\n
