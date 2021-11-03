@@ -12,16 +12,14 @@ _log_file_path = path.join(path.dirname(path.abspath(__file__)), 'logging.ini')
 logging.config.fileConfig(_log_file_path)
 
 class JsonParser(object):
-    """
-    Getter of JSON settings values for application runtime settings
-    """
+    "Getter of JSON settings values for application runtime settings"
     @staticmethod
     def getVal(json_key):
         try:
             __json_file='settings.json'
             with open(__json_file) as f:
-                data = json.load(f)            
-            json_value = data[json_key]        
+                data = json.load(f)       
+            json_value = data[json_key]
             return json_value
         except Exception as e:
             logging.error(f'Exception: {e}', exc_info=1)
@@ -31,6 +29,11 @@ class AppSettings(object):
     Setter of application entities based on JSON settings
     """
     def __init__(self) -> None:
+        """
+        Auto initialization of the settings.json properties and
+        loading them into the Py object properties
+        \n:args - None
+        """
         super().__init__()
         n = __class__.__name__
         self.inputFile = JsonParser.getVal("inputXlsxPath")
@@ -44,6 +47,11 @@ class AppSettings(object):
 
 class InputXlsx(object):
     def __init__(self, XlsxFile: str) -> None:
+        """
+        XLSX object with methods to get required data 
+        \n:args 
+            - str: path to the XLSX file
+        """
         super().__init__()
         self.n = __class__.__name__
         self.XlsxFile = XlsxFile
@@ -108,6 +116,13 @@ class OracleDb(object):
     """
     def __init__(self, dbUser, dbPass, dbDsn) -> None:
         super().__init__()
+        """
+        Init database properties
+        \n:args 
+            - dbUser: str
+            - dbPass: str
+            - dbDsn: str
+        """
         self.n = __class__.__name__
         self.dbUser = dbUser
         self.dbPass = dbPass
@@ -159,6 +174,13 @@ class DataProcessor(object):
     Class for getting data for final report
     """
     def __init__(self, db: OracleDb, inputXlsx: InputXlsx) -> None:
+        """
+        Loading OracleDb and InputXlsx as datasources with their methods
+        and populating others with their methods\n
+        :args
+            - db: OracleDb object\n
+            - inputXlsx: InputXlsx object
+        """
         super().__init__()
         self.n = __class__.__name__
         self.db = db
@@ -256,6 +278,9 @@ class OutputCsv(object):
     Class for creating final CSV report of filtered data
     """
     def __init__(self, outputFile, dataProcessor: DataProcessor, inputXlsx: InputXlsx) -> None:
+        """
+        
+        """
         super().__init__()
         self.n = __class__.__name__
         self.csvF = outputFile
@@ -274,7 +299,7 @@ class OutputCsv(object):
             now = datetime.now()
             date = now.strftime("%m_%d_%H-%M-%S")
             csvfile = f"{self.csvF}_{date}.csv"            
-            with open(csvfile, 'a', newline ='') as f:                
+            with open(csvfile, 'a', newline ='') as f:               
                 writer = csv.DictWriter(f, delimiter=',', quoting=csv.QUOTE_NONNUMERIC, lineterminator='\n', fieldnames=self.columns)                
                 writer.writeheader()                
                 for sn, manuf, model, connT in zip(self.serials, self.manufacturer, self.model, self.connectionType):
@@ -289,7 +314,7 @@ class OutputCsv(object):
                     writer.writerow(__d)
                     logging.info(f'{self.n} writerow number: {__cnt}')
                 logging.info(f'{self.n} Finished creating CSV report')
-                return __cnt                
+                return __cnt
         except Exception as e:
             logging.error(f'{self.n} Exception: {e}', exc_info=1)
             return 0
@@ -298,7 +323,7 @@ class OutputCsv(object):
 if __name__ == "__main__":
     try:
         print(__name__+"-"*30+" START "+"-"*30)
-        __starttime = timer()    
+        __starttime = timer()
         logging.info("-"*30+" START "+"-"*30)
         
         app = AppSettings()
@@ -320,7 +345,7 @@ if __name__ == "__main__":
             print(f'ResultOfReportCreation: Fail')
             logging.info("-"*30+" FAILED "+"-"*30)
             print(__name__+"-"*30+" FAILED "+"-"*30)
-            exit(1)        
+            exit(1)
     except Exception as e:
         print(f'ResultOfReportCreation: Fail')
         print(f'Exception in the program entry point __main__:')
