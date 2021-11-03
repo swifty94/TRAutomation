@@ -279,7 +279,7 @@ class OutputCsv(object):
     """
     def __init__(self, outputFile, dataProcessor: DataProcessor, inputXlsx: InputXlsx) -> None:
         """
-        
+
         """
         super().__init__()
         self.n = __class__.__name__
@@ -337,19 +337,19 @@ if __name__ == "__main__":
         __elapsed = round(__endtime - __starttime, 3)
         print(f'Elapsed time: {__elapsed} sec\n')
         if report:
-            print(f'ResultOfReportCreation: Success')
+            print('ResultOfReportCreation: Success')
             logging.info("-"*30+" FINISHED OK "+"-"*30)
             print(__name__+"-"*30+" FINISHED OK "+"-"*30)
             exit(0)
         else:
-            print(f'ResultOfReportCreation: Fail')
+            print('ResultOfReportCreation: Fail')
             logging.info("-"*30+" FAILED "+"-"*30)
             print(__name__+"-"*30+" FAILED "+"-"*30)
             exit(1)
     except Exception as e:
-        print(f'ResultOfReportCreation: Fail')
-        print(f'Exception in the program entry point __main__:')
-        print(f'Program finished with errors. Review the log for the details.')
+        print('ResultOfReportCreation: Fail')
+        print('Exception in the program entry point __main__:')
+        print('Program finished with errors. Review the log for the details.')
         logging.info("-"*30+" FAILED "+"-"*30)
         print(__name__+"-"*30+" FAILED "+"-"*30)
         exit(2)
