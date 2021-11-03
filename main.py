@@ -31,8 +31,8 @@ class AppSettings(object):
     def __init__(self) -> None:
         """
         Auto initialization of the settings.json properties and
-        loading them into the Py object properties
-        \n:args - None
+        loading them into the Py object properties\n
+        :args - None
         """
         super().__init__()
         n = __class__.__name__
