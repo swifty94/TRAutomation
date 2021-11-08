@@ -265,7 +265,7 @@ where p.name_id=n.id and
                             logging.info(f'{self.n} connectionTypeParameter=None or empty')
                             connectionTypeParamValue = None
                             connectionTypeFinalList.append(connectionTypeParamValue)
-                        elif "L2TP" in connectionTypeParamValue:
+                        else:
                             connectionTypeFinalList.append(connectionTypeParamValue)
                     logging.info(f'{self.n} Finished processing data for cpeId={cid}')
                     logging.debug(f'\n{self.n} activeConnectionObject={activeConnectionObject};\n connectionTypeParam={connectionTypeParam};\n connectionTypeParamValue={connectionTypeParamValue}')
@@ -303,16 +303,17 @@ class OutputCsv(object):
                 writer = csv.DictWriter(f, delimiter=',', quoting=csv.QUOTE_NONNUMERIC, lineterminator='\n', fieldnames=self.columns)                
                 writer.writeheader()                
                 for sn, manuf, model, connT in zip(self.serials, self.manufacturer, self.model, self.connectionType):
-                    __cnt += 1
-                    __d = {
-                        'Serial' : sn,
-                        'Manufacturer' : manuf,
-                        'Model name' : model,
-                        'Connection type' : connT
-                    }
-                    logging.info(f'{self.n} dataToCsv: {__d}')
-                    writer.writerow(__d)
-                    logging.info(f'{self.n} writerow number: {__cnt}')
+                    if "L2TP" in connT:
+                        __cnt += 1
+                        __d = {
+                            'Serial' : sn,
+                            'Manufacturer' : manuf,
+                            'Model name' : model,
+                            'Connection type' : connT
+                        }
+                        logging.info(f'{self.n} dataToCsv: {__d}')
+                        writer.writerow(__d)
+                        logging.info(f'{self.n} writerow number: {__cnt}')
                 logging.info(f'{self.n} Finished creating CSV report')
                 return __cnt
         except Exception as e:
